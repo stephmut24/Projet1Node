@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon app.js"
   },
-  "author": "Stephan", 
+  "author": "Stephan",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
