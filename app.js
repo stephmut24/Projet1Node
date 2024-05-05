@@ -1,15 +1,16 @@
 const express = require('express')
-const {success} = require('./helper.js')
+const morgan = require('morgan')
+const favicon = require('serve-favicon')
+const {success, getUniqueId} = require('./helper.js')
 let pokemons = require('./mock-pokemon');
 
 const app= express()
 const port = 3000
 
 
-app.use((req, res, next)=>{
-    console.log(`URL : ${req.url}`)
-    next()
-})
+app
+.use(favicon(__dirname + '/favicon.ico'))
+.use(morgan('dev'))
 
 app.get('/', (req,res)=>res.send("hello again, Express 2"))
 
@@ -27,6 +28,14 @@ app.get('/api/pokemons/:id',(req, res)=>{
 
 app.get('/api/pokemons',(req, res)=>{
     res.send(`Il y a ${pokemons.length} pokemons dans le pokedex pour le moment.`)
+})
+
+app.post('/api/pokemons', (req, res)=>{
+    const id = getUniqueId(pokemons)
+    const pokemonCreated = { ...req.body, ...{id: id, created: new Date()}}
+    pokemons.push(pokemonCreated)
+    const message = `Le pokemon ${pokemonCreated.name} a bien ete cree.`
+    res.json(success(message, pokemonCreated))
 })
 
 
