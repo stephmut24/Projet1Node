@@ -20,4 +20,8 @@ sequelize.initDb()
 
 //ici nous placerons futur points de terminaison
 
+require('./src/roots/findAllPokemons')(app)
+require('./src/roots/findPokemonByPK')(app)
+require('./src/roots/createPokemon')(app)
+
 app.listen(port,()=>console.log(`Notre application est demarree sur : http://localhost:${port}`))
