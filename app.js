@@ -22,6 +22,8 @@ sequelize.initDb()
 
 require('./src/roots/findAllPokemons')(app)
 require('./src/roots/findPokemonByPK')(app)
-require('./src/roots/createPokemon')(app)
+require('./src/roots/CreatePokemon')(app)
+require('./src/roots/updatePokemon')(app)
+require('./src/roots/deletePokemon')(app)
 
 app.listen(port,()=>console.log(`Notre application est demarree sur : http://localhost:${port}`))
