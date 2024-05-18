@@ -1,5 +1,5 @@
 const { Pokemon } = require('../db/sequelize')
-const {ValidationError} = require('sequelize')
+const {ValidationError, UniqueConstraintError} = require('sequelize')
   
 module.exports = (app) => {
   app.put('/api/pokemons/:id', (req, res) => {
@@ -9,7 +9,7 @@ module.exports = (app) => {
     })
     .then(_ => {
      return Pokemon.findByPk(id).then(pokemon => {
-        if(pokemon ===null){
+        if(pokemon === null){
             const message = 'Le pokemon demande n\'existe pas. Reesayez avec un autre identifiant';
             return res.status(404).json({messgae})
         }
@@ -21,7 +21,10 @@ module.exports = (app) => {
       if(error instanceof ValidationError){
         return res.status(400).json({message: error.message, data: error})
       }
-        const message = 'La liste des pokemons n\'a pas pu etre recuperee. Reessayer dans quelques instants,'
+      if(error instanceof UniqueConstraintError){
+        return res.status(400).json({message: error.message, data: error})
+      }
+        const message = 'Le pokemon n\'a pas pu etre modifie. Reessayer dans quelques instants,'
         res.status(500).json({message, data:error}) 
     })
   })
