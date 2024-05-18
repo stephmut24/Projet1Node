@@ -25,6 +25,7 @@ require('./src/roots/findPokemonByPK')(app)
 require('./src/roots/CreatePokemon')(app)
 require('./src/roots/updatePokemon')(app)
 require('./src/roots/deletePokemon')(app)
+require('./src/roots/login')(app)
 
 //On ajoute la gestion des erreurs 404
 app.use(({res}) =>{

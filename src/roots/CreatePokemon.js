@@ -1,5 +1,5 @@
 const { Pokemon } = require('../db/sequelize')
-const {ValidationError, UniqueConstraintError} = require('sequelize')
+const {ValidationError,UniqueConstraintError} = require('sequelize')
   
 module.exports = (app) => {
   app.post('/api/pokemons', (req, res) => {
