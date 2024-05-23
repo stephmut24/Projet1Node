@@ -1,3 +1,4 @@
+//dans ce projet nous avons cree une API Rest avec express.js
 const express = require('express')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
