@@ -6,7 +6,7 @@ const sequelize = require('./src/db/sequelize')
 
 
 const app= express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 
 
@@ -18,7 +18,7 @@ app
 sequelize.initDb()
 
 app.get('/', (req, res)=>{
-    res.json("Hello, Heroku")
+    res.json("Hello, Vercel")
 })
 
 //ici nous placerons futur points de terminaison
